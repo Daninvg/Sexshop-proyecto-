@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SexshopController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -11,6 +12,9 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+//Agregamos las rutas que para las views de la sexshop
+Route::resource('sexshop',SexshopController::class);//->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
